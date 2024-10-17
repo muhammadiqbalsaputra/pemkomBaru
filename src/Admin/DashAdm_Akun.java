@@ -8,6 +8,7 @@ import java.sql.Statement;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import UILogin.Koneksi;
+import javax.swing.JOptionPane;
 
 
 public class DashAdm_Akun extends javax.swing.JFrame {
@@ -62,7 +63,7 @@ public class DashAdm_Akun extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         buttonEdit = new rojeru_san.complementos.RSButtonHover();
         buttonTambah = new rojeru_san.complementos.RSButtonHover();
-        rSButtonHover3 = new rojeru_san.complementos.RSButtonHover();
+        buttonHapus = new rojeru_san.complementos.RSButtonHover();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Halaman Owner");
@@ -233,15 +234,15 @@ public class DashAdm_Akun extends javax.swing.JFrame {
         });
         PanelUtama.add(buttonTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 150, -1));
 
-        rSButtonHover3.setBackground(new java.awt.Color(255, 0, 0));
-        rSButtonHover3.setText("Hapus");
-        rSButtonHover3.setColorHover(new java.awt.Color(153, 0, 0));
-        rSButtonHover3.addActionListener(new java.awt.event.ActionListener() {
+        buttonHapus.setBackground(new java.awt.Color(255, 0, 0));
+        buttonHapus.setText("Hapus");
+        buttonHapus.setColorHover(new java.awt.Color(153, 0, 0));
+        buttonHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonHover3ActionPerformed(evt);
+                buttonHapusActionPerformed(evt);
             }
         });
-        PanelUtama.add(rSButtonHover3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 150, -1));
+        PanelUtama.add(buttonHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 150, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -302,9 +303,36 @@ public class DashAdm_Akun extends javax.swing.JFrame {
         t.setVisible(true);
     }//GEN-LAST:event_buttonTambahActionPerformed
 
-    private void rSButtonHover3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover3ActionPerformed
+    private void buttonHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHapusActionPerformed
+        int n = jTable1.getSelectedRow();
+        if(n != -1){
+            int id = Integer.parseInt(jTable1.getValueAt(n, 0).toString());
+//            JOptionPane.showMessageDialog(this, id); 
+            
+            int pilihan = JOptionPane.showConfirmDialog(this, 
+                    "Apakah Anda yakin untuk menghapus data user ini?",
+                    "Hapus Data",JOptionPane.YES_NO_OPTION);
+            if(pilihan == 0){
+                //yes
+                String Q = "DELETE FROM akun WHERE id="+id+" ";
+                try {
+                    Connection K = Koneksi.Go();
+                    Statement S = K.createStatement();
+                    S.executeUpdate(Q);
+                    viewdata(""); 
+                } catch (Exception e) {
+                }
+            }else {
+                //no
+            }
 
-    }//GEN-LAST:event_rSButtonHover3ActionPerformed
+            
+            
+        }else {
+            JOptionPane.showMessageDialog(this, "Anda belum memilih data"); 
+        
+        }
+    }//GEN-LAST:event_buttonHapusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -379,6 +407,7 @@ public class DashAdm_Akun extends javax.swing.JFrame {
     private rojeru_san.complementos.RSButtonHover btnLogout1;
     private rojeru_san.complementos.RSButtonHover btnProduk;
     private rojeru_san.complementos.RSButtonHover buttonEdit;
+    private rojeru_san.complementos.RSButtonHover buttonHapus;
     private rojeru_san.complementos.RSButtonHover buttonTambah;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel1;
@@ -388,7 +417,6 @@ public class DashAdm_Akun extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private static javax.swing.JTable jTable1;
-    private rojeru_san.complementos.RSButtonHover rSButtonHover3;
     private rojerusan.RSLabelVerticalDBeanInfo rSLabelVerticalDBeanInfo1;
     private javax.swing.JPanel sidebar;
     private javax.swing.JLabel txtLevel;
