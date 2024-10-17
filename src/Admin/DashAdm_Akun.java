@@ -387,7 +387,7 @@ public class DashAdm_Akun extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private static javax.swing.JTable jTable1;
     private rojeru_san.complementos.RSButtonHover rSButtonHover3;
     private rojerusan.RSLabelVerticalDBeanInfo rSLabelVerticalDBeanInfo1;
     private javax.swing.JPanel sidebar;
@@ -396,7 +396,7 @@ public class DashAdm_Akun extends javax.swing.JFrame {
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 
-    private void viewdata(String where) {
+    public static void viewdata(String where) {
         try {
             DefaultTableModel m = (DefaultTableModel) jTable1.getModel();
             m.getDataVector().removeAllElements();

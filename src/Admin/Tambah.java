@@ -4,15 +4,17 @@
  */
 package Admin;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+import UILogin.Koneksi;
+
 /**
  *
  * @author FAUZI
  */
 public class Tambah extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Tambah
-     */
     public Tambah() {
         initComponents();
     }
@@ -29,17 +31,15 @@ public class Tambah extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnBatal = new rojeru_san.complementos.RSButtonHover();
         rSButtonHover1 = new rojeru_san.complementos.RSButtonHover();
-        jTextField1 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jTextField2 = new javax.swing.JTextField();
+        txtUsername = new javax.swing.JTextField();
+        txtNama = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jRadioButton2 = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtPassword = new javax.swing.JPasswordField();
+        optionRole = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -62,36 +62,20 @@ public class Tambah extends javax.swing.JFrame {
         });
         jPanel1.add(rSButtonHover1, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 398, -1, -1));
 
-        jTextField1.setText("e.g johnwick");
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 123, 253, 40));
+        txtUsername.setText(" ");
+        jPanel1.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 123, 253, 40));
 
-        jRadioButton1.setText("Admin");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        txtNama.setText(" ");
+        txtNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                txtNamaActionPerformed(evt);
             }
         });
-        jPanel1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, -1, -1));
-
-        jTextField2.setText("e.g John Wick");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 71, 253, 40));
+        jPanel1.add(txtNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 71, 253, 40));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Form Tambah Akun");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 6, -1, -1));
-
-        jRadioButton2.setText("Kasir");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, -1, -1));
 
         jLabel2.setText("Username");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 123, 80, 40));
@@ -102,19 +86,18 @@ public class Tambah extends javax.swing.JFrame {
         jLabel4.setText("Password");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 175, 80, 40));
 
-        jRadioButton3.setText("Owner");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, -1));
-
         jLabel5.setText("Role");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 233, 80, 40));
 
-        jPasswordField1.setText("jPasswordField1");
-        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 250, 40));
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 250, 40));
+
+        optionRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "admin", "owner", "kasir" }));
+        jPanel1.add(optionRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 481, 480));
 
@@ -122,28 +105,44 @@ public class Tambah extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rSButtonHover1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover1ActionPerformed
-        // TODO add your handling code here:
+        String name = txtNama.getText();
+        String user = txtUsername.getText();
+        String pass = new String(txtPassword.getPassword());
+        String level = optionRole.getSelectedItem().toString();
+        
+        //pengecekan
+        
+        try {
+            Connection K = Koneksi.Go();
+            String Q = "INSERT INTO akun "
+                    + "(fullname,username,password,level) "
+                    + "VALUES (?,?,?,?)";
+            PreparedStatement PS = K.prepareStatement(Q);
+            PS.setString(1, name);
+            PS.setString(2, user);
+            PS.setString(3, pass);
+            PS.setString(4, level);
+            PS.executeUpdate();
+            
+            DashAdm_Akun.viewdata(""); 
+            JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
+            txtNama.requestFocus();
+        }catch (Exception e) {
+            
+        }
     }//GEN-LAST:event_rSButtonHover1ActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBatalActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtNamaActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
-
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_txtPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,12 +187,10 @@ public class Tambah extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JComboBox<String> optionRole;
     private rojeru_san.complementos.RSButtonHover rSButtonHover1;
+    private javax.swing.JTextField txtNama;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
