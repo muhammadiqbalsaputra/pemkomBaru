@@ -2,7 +2,12 @@ package Admin;
 
 import UILogin.UserProfile;
 import UILogin.login;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
+import UILogin.Koneksi;
 
 
 public class DashAdm_Akun extends javax.swing.JFrame {
@@ -24,7 +29,7 @@ public class DashAdm_Akun extends javax.swing.JFrame {
         txtNamaProfile.setText(u.getFullname());
         txtLevel.setText(u.getLevel());
 //        txtTextNama.setText(u.getFullname());
-
+        viewdata("");
     }
     
 
@@ -40,10 +45,11 @@ public class DashAdm_Akun extends javax.swing.JFrame {
         rSLabelVerticalDBeanInfo1 = new rojerusan.RSLabelVerticalDBeanInfo();
         PanelUtama = new javax.swing.JPanel();
         header = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         txtNamaProfile = new javax.swing.JLabel();
         txtLevel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         sidebar = new javax.swing.JPanel();
         btnProduk = new rojeru_san.complementos.RSButtonHover();
         btnHome = new rojeru_san.complementos.RSButtonHover();
@@ -68,25 +74,55 @@ public class DashAdm_Akun extends javax.swing.JFrame {
         header.setAlignmentY(0.0F);
         header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtNamaProfile.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        txtNamaProfile.setForeground(new java.awt.Color(240, 240, 240));
-        txtNamaProfile.setText("Nama");
-        header.add(txtNamaProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(1149, 25, -1, 23));
-
-        txtLevel.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        txtLevel.setForeground(new java.awt.Color(240, 240, 240));
-        txtLevel.setText("Role");
-        header.add(txtLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1183, 54, -1, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/PROFILE.png"))); // NOI18N
-        header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1300, 20, -1, -1));
-
         jLabel2.setFont(new java.awt.Font("Poppins", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(240, 240, 240));
         jLabel2.setText("OnlineShop");
         jLabel2.setToolTipText("");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         header.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 17, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(102, 255, 102));
+
+        txtNamaProfile.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        txtNamaProfile.setForeground(new java.awt.Color(240, 240, 240));
+        txtNamaProfile.setText("Nama");
+
+        txtLevel.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        txtLevel.setForeground(new java.awt.Color(240, 240, 240));
+        txtLevel.setText("Role");
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/PROFILE.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(txtNamaProfile))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(txtLevel)))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txtNamaProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtLevel)))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        header.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, 420, 80));
 
         PanelUtama.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 1380, 90));
 
@@ -137,13 +173,13 @@ public class DashAdm_Akun extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "NO", "Fullname", "Username", "Password"
+                "ID", "NO", "Fullname", "Username", "Password", "Role"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -349,6 +385,7 @@ public class DashAdm_Akun extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private rojeru_san.complementos.RSButtonHover rSButtonHover3;
@@ -358,4 +395,32 @@ public class DashAdm_Akun extends javax.swing.JFrame {
     private javax.swing.JLabel txtNamaProfile;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
+
+    private void viewdata(String where) {
+        try {
+            DefaultTableModel m = (DefaultTableModel) jTable1.getModel();
+            m.getDataVector().removeAllElements();
+            Connection K = Koneksi.Go();
+            Statement S = K.createStatement();
+            String Q = "SELECT * FROM akun "+where;
+            ResultSet R = S.executeQuery(Q);
+            int n = 1;
+            while (R.next()) {                 
+                int id = R.getInt("id");
+                String fullname = R.getString("fullname");
+                String username = R.getString("username");
+                String password = R.getString("password");
+                String level = R.getString("level");
+                Object[] data = {id, n, fullname, username, password, level};
+                m.addRow(data); 
+                n++;
+            }
+            
+            jTable1.getColumnModel().getColumn(0).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
+//            
+        } catch (Exception e) {
+            //error handling
+        }
+    }
 }
