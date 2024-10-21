@@ -64,6 +64,8 @@ public class DashAdm_Akun extends javax.swing.JFrame {
         buttonEdit = new rojeru_san.complementos.RSButtonHover();
         buttonTambah = new rojeru_san.complementos.RSButtonHover();
         rSButtonHover3 = new rojeru_san.complementos.RSButtonHover();
+        btnRefresh = new rojeru_san.complementos.RSButtonHover();
+        buttonEdit2 = new rojeru_san.complementos.RSButtonHover();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Halaman Owner");
@@ -192,7 +194,6 @@ public class DashAdm_Akun extends javax.swing.JFrame {
 
         txtSearch.setBackground(new java.awt.Color(242, 242, 242));
         txtSearch.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        txtSearch.setText("Search..");
         txtSearch.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         txtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,6 +245,26 @@ public class DashAdm_Akun extends javax.swing.JFrame {
         });
         PanelUtama.add(rSButtonHover3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 150, -1));
 
+        btnRefresh.setBackground(new java.awt.Color(51, 255, 51));
+        btnRefresh.setText("Refresh");
+        btnRefresh.setColorHover(new java.awt.Color(153, 102, 0));
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+        PanelUtama.add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 110, 150, -1));
+
+        buttonEdit2.setBackground(new java.awt.Color(255, 102, 0));
+        buttonEdit2.setText("Edit");
+        buttonEdit2.setColorHover(new java.awt.Color(153, 102, 0));
+        buttonEdit2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEdit2ActionPerformed(evt);
+            }
+        });
+        PanelUtama.add(buttonEdit2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 110, 150, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -291,6 +312,13 @@ public class DashAdm_Akun extends javax.swing.JFrame {
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
+        String key = txtSearch.getText();
+        String w = "WHERE "
+                + "fullname LIKE '%"+key+"%' "
+                + "OR username LIKE '%"+key+"%' "
+                + "OR password LIKE '%"+key+"%' "
+                + "OR level LIKE '%"+key+"%'";
+        viewdata(w);
     }//GEN-LAST:event_txtSearchActionPerformed
 
     private void buttonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditActionPerformed
@@ -347,6 +375,16 @@ public class DashAdm_Akun extends javax.swing.JFrame {
         
         }
     }//GEN-LAST:event_rSButtonHover3ActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        // TODO add your handling code here:
+        txtSearch.setText(""); 
+        viewdata("");
+    }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void buttonEdit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEdit2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonEdit2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -420,7 +458,9 @@ public class DashAdm_Akun extends javax.swing.JFrame {
     private rojeru_san.complementos.RSButtonHover btnHome;
     private rojeru_san.complementos.RSButtonHover btnLogout1;
     private rojeru_san.complementos.RSButtonHover btnProduk;
+    private rojeru_san.complementos.RSButtonHover btnRefresh;
     private rojeru_san.complementos.RSButtonHover buttonEdit;
+    private rojeru_san.complementos.RSButtonHover buttonEdit2;
     private rojeru_san.complementos.RSButtonHover buttonTambah;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel1;
