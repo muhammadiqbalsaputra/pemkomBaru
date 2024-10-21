@@ -301,13 +301,13 @@ public class DashAdm_Akun extends javax.swing.JFrame {
             String UN = jTable1.getValueAt(n, 3).toString();
             String PS = jTable1.getValueAt(n, 4).toString();
             String LV = jTable1.getValueAt(n, 5).toString();
-            EditBaru U = new EditBaru(this, true);
-            U.setId(id);
-            U.setFN(FN);
-            U.setUS(UN);
-            U.setPS(PS);
-            U.setLV(LV);
-            U.setVisible(true); 
+            EditBaru E = new EditBaru(this, true);
+            E.setId(id);
+            E.setFN(FN);
+            E.setUS(UN);
+            E.setPS(PS);
+            E.setLV(LV);
+            E.setVisible(true); 
 //            DISINI DITEMPAT INI ERROR !!!!
         }
     }//GEN-LAST:event_buttonEditActionPerformed
