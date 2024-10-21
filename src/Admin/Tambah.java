@@ -62,10 +62,13 @@ public class Tambah extends javax.swing.JFrame {
         });
         jPanel1.add(rSButtonHover1, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 398, -1, -1));
 
-        txtUsername.setText(" ");
+        txtUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsernameActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 123, 253, 40));
 
-        txtNama.setText(" ");
         txtNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNamaActionPerformed(evt);
@@ -143,6 +146,10 @@ public class Tambah extends javax.swing.JFrame {
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsernameActionPerformed
 
     /**
      * @param args the command line arguments
