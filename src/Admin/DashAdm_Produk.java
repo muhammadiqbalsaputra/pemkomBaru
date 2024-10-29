@@ -264,68 +264,68 @@ public class DashAdm_Produk extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonTambahActionPerformed
 
     private void rSButtonHover3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover3ActionPerformed
-        int n = jTable1.getSelectedRow();
-        if(n != -1){
-            int id = Integer.parseInt(jTable1.getValueAt(n, 0).toString());
-            //            JOptionPane.showMessageDialog(this, id);
-
-            int pilihan = JOptionPane.showConfirmDialog(this,
-                "Apakah Anda yakin untuk menghapus data user ini?",
-                "Hapus Data",JOptionPane.YES_NO_OPTION);
-            if(pilihan == 0){
-                //yes
-                String Q = "DELETE FROM akun WHERE id="+id+" ";
-                try {
-                    Connection K = Koneksi.Go();
-                    Statement S = K.createStatement();
-                    S.executeUpdate(Q);
-                    viewdata("");
-                } catch (Exception e) {
-                }
-            }else {
-                //no
-            }
-
-        }else {
-            JOptionPane.showMessageDialog(this, "Anda belum memilih data");
-
-        }
+//        int n = jTable1.getSelectedRow();
+//        if(n != -1){
+//            int id = Integer.parseInt(jTable1.getValueAt(n, 0).toString());
+//            //            JOptionPane.showMessageDialog(this, id);
+//
+//            int pilihan = JOptionPane.showConfirmDialog(this,
+//                "Apakah Anda yakin untuk menghapus data user ini?",
+//                "Hapus Data",JOptionPane.YES_NO_OPTION);
+//            if(pilihan == 0){
+//                //yes
+//                String Q = "DELETE FROM akun WHERE id="+id+" ";
+//                try {
+//                    Connection K = Koneksi.Go();
+//                    Statement S = K.createStatement();
+//                    S.executeUpdate(Q);
+//                    viewdata("");
+//                } catch (Exception e) {
+//                }
+//            }else {
+//                //no
+//            }
+//
+//        }else {
+//            JOptionPane.showMessageDialog(this, "Anda belum memilih data");
+//
+//        }
     }//GEN-LAST:event_rSButtonHover3ActionPerformed
 
     private void buttonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditActionPerformed
-        int n = jTable1.getSelectedRow();
-        if(n != -1){
-            int id = Integer.parseInt(jTable1.getValueAt(n, 0).toString());
-            String FN = jTable1.getValueAt(n, 2).toString();
-            String UN = jTable1.getValueAt(n, 3).toString();
-            String PS = jTable1.getValueAt(n, 4).toString();
-            String LV = jTable1.getValueAt(n, 5).toString();
-            EditBaru E = new EditBaru(this, true);
-            E.setId(id);
-            E.setFN(FN);
-            E.setUS(UN);
-            E.setPS(PS);
-            E.setLV(LV);
-            E.setVisible(true);
-            //            DISINI DITEMPAT INI ERROR !!!!
-        }
+//        int n = jTable1.getSelectedRow();
+//        if(n != -1){
+//            int id = Integer.parseInt(jTable1.getValueAt(n, 0).toString());
+//            String FN = jTable1.getValueAt(n, 2).toString();
+//            String UN = jTable1.getValueAt(n, 3).toString();
+//            String PS = jTable1.getValueAt(n, 4).toString();
+//            String LV = jTable1.getValueAt(n, 5).toString();
+//            EditBaru E = new EditBaru(this, true);
+//            E.setId(id);
+//            E.setFN(FN);
+//            E.setUS(UN);
+//            E.setPS(PS);
+//            E.setLV(LV);
+//            E.setVisible(true);
+//            //            DISINI DITEMPAT INI ERROR !!!!
+//        }
     }//GEN-LAST:event_buttonEditActionPerformed
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        // TODO add your handling code here:
-        txtSearch.setText("");
-        viewdata("");
+//        // TODO add your handling code here:
+//        txtSearch.setText("");
+//        viewdata("");
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
-        String key = txtSearch.getText();
-        String w = "WHERE "
-        + "fullname LIKE '%"+key+"%' "
-        + "OR username LIKE '%"+key+"%' "
-        + "OR password LIKE '%"+key+"%' "
-        + "OR level LIKE '%"+key+"%'";
-        viewdata(w);
+//        String key = txtSearch.getText();
+//        String w = "WHERE "
+//        + "fullname LIKE '%"+key+"%' "
+//        + "OR username LIKE '%"+key+"%' "
+//        + "OR password LIKE '%"+key+"%' "
+//        + "OR level LIKE '%"+key+"%'";
+//        viewdata(w);
     }//GEN-LAST:event_txtSearchActionPerformed
 
     /**
