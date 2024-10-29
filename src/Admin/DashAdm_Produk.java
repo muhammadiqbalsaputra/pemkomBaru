@@ -46,8 +46,15 @@ public class DashAdm_Produk extends javax.swing.JFrame {
         btnHome = new rojeru_san.complementos.RSButtonHover();
         btnAkun = new rojeru_san.complementos.RSButtonHover();
         btnLogout1 = new rojeru_san.complementos.RSButtonHover();
-        jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        buttonTambah = new rojeru_san.complementos.RSButtonHover();
+        rSButtonHover3 = new rojeru_san.complementos.RSButtonHover();
+        buttonEdit = new rojeru_san.complementos.RSButtonHover();
+        btnRefresh = new rojeru_san.complementos.RSButtonHover();
+        jLabel4 = new javax.swing.JLabel();
+        txtSearch = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Halaman Owner");
@@ -126,9 +133,6 @@ public class DashAdm_Produk extends javax.swing.JFrame {
 
         PanelUtama.add(sidebar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 83, -1, 940));
 
-        jLabel3.setText("menu produk");
-        PanelUtama.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, -1, -1));
-
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -143,6 +147,72 @@ public class DashAdm_Produk extends javax.swing.JFrame {
         );
 
         PanelUtama.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "No", "produk_kode", "nama", "gambar", "kategori", "produk supplier", "harga jual", "harga beli", "stok", "deskripsi"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        PanelUtama.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 207, 1120, 370));
+
+        buttonTambah.setText("Tambah");
+        buttonTambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonTambahActionPerformed(evt);
+            }
+        });
+        PanelUtama.add(buttonTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 150, -1));
+
+        rSButtonHover3.setBackground(new java.awt.Color(255, 0, 0));
+        rSButtonHover3.setText("Hapus");
+        rSButtonHover3.setColorHover(new java.awt.Color(153, 0, 0));
+        rSButtonHover3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonHover3ActionPerformed(evt);
+            }
+        });
+        PanelUtama.add(rSButtonHover3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 150, -1));
+
+        buttonEdit.setBackground(new java.awt.Color(255, 102, 0));
+        buttonEdit.setText("Edit");
+        buttonEdit.setColorHover(new java.awt.Color(153, 102, 0));
+        buttonEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEditActionPerformed(evt);
+            }
+        });
+        PanelUtama.add(buttonEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 110, 150, -1));
+
+        btnRefresh.setBackground(new java.awt.Color(51, 255, 51));
+        btnRefresh.setText("Refresh");
+        btnRefresh.setColorHover(new java.awt.Color(153, 102, 0));
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+        PanelUtama.add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 110, 150, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/SEARCH-25.png"))); // NOI18N
+        PanelUtama.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 110, -1, -1));
+
+        txtSearch.setBackground(new java.awt.Color(242, 242, 242));
+        txtSearch.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        txtSearch.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
+        PanelUtama.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 100, 270, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -187,6 +257,76 @@ public class DashAdm_Produk extends javax.swing.JFrame {
         login l = new login();
         l.setVisible(true);
     }//GEN-LAST:event_btnLogout1ActionPerformed
+
+    private void buttonTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTambahActionPerformed
+        Tambah t = new Tambah();
+        t.setVisible(true);
+    }//GEN-LAST:event_buttonTambahActionPerformed
+
+    private void rSButtonHover3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover3ActionPerformed
+        int n = jTable1.getSelectedRow();
+        if(n != -1){
+            int id = Integer.parseInt(jTable1.getValueAt(n, 0).toString());
+            //            JOptionPane.showMessageDialog(this, id);
+
+            int pilihan = JOptionPane.showConfirmDialog(this,
+                "Apakah Anda yakin untuk menghapus data user ini?",
+                "Hapus Data",JOptionPane.YES_NO_OPTION);
+            if(pilihan == 0){
+                //yes
+                String Q = "DELETE FROM akun WHERE id="+id+" ";
+                try {
+                    Connection K = Koneksi.Go();
+                    Statement S = K.createStatement();
+                    S.executeUpdate(Q);
+                    viewdata("");
+                } catch (Exception e) {
+                }
+            }else {
+                //no
+            }
+
+        }else {
+            JOptionPane.showMessageDialog(this, "Anda belum memilih data");
+
+        }
+    }//GEN-LAST:event_rSButtonHover3ActionPerformed
+
+    private void buttonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditActionPerformed
+        int n = jTable1.getSelectedRow();
+        if(n != -1){
+            int id = Integer.parseInt(jTable1.getValueAt(n, 0).toString());
+            String FN = jTable1.getValueAt(n, 2).toString();
+            String UN = jTable1.getValueAt(n, 3).toString();
+            String PS = jTable1.getValueAt(n, 4).toString();
+            String LV = jTable1.getValueAt(n, 5).toString();
+            EditBaru E = new EditBaru(this, true);
+            E.setId(id);
+            E.setFN(FN);
+            E.setUS(UN);
+            E.setPS(PS);
+            E.setLV(LV);
+            E.setVisible(true);
+            //            DISINI DITEMPAT INI ERROR !!!!
+        }
+    }//GEN-LAST:event_buttonEditActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        // TODO add your handling code here:
+        txtSearch.setText("");
+        viewdata("");
+    }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+        String key = txtSearch.getText();
+        String w = "WHERE "
+        + "fullname LIKE '%"+key+"%' "
+        + "OR username LIKE '%"+key+"%' "
+        + "OR password LIKE '%"+key+"%' "
+        + "OR level LIKE '%"+key+"%'";
+        viewdata(w);
+    }//GEN-LAST:event_txtSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -260,13 +400,20 @@ public class DashAdm_Produk extends javax.swing.JFrame {
     private rojeru_san.complementos.RSButtonHover btnHome;
     private rojeru_san.complementos.RSButtonHover btnLogout1;
     private rojeru_san.complementos.RSButtonHover btnProduk;
+    private rojeru_san.complementos.RSButtonHover btnRefresh;
+    private rojeru_san.complementos.RSButtonHover buttonEdit;
+    private rojeru_san.complementos.RSButtonHover buttonTambah;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private static javax.swing.JTable jTable1;
+    private rojeru_san.complementos.RSButtonHover rSButtonHover3;
     private javax.swing.JPanel sidebar;
     private javax.swing.JLabel txtLevel;
     private javax.swing.JLabel txtNamaProfile;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
