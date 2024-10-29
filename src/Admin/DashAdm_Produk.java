@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class DashAdm_Produk extends javax.swing.JFrame {
@@ -271,32 +272,32 @@ public class DashAdm_Produk extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonTambahActionPerformed
 
     private void rSButtonHover3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover3ActionPerformed
-//        int n = jTable1.getSelectedRow();
-//        if(n != -1){
-//            int id = Integer.parseInt(jTable1.getValueAt(n, 0).toString());
-//            //            JOptionPane.showMessageDialog(this, id);
-//
-//            int pilihan = JOptionPane.showConfirmDialog(this,
-//                "Apakah Anda yakin untuk menghapus data user ini?",
-//                "Hapus Data",JOptionPane.YES_NO_OPTION);
-//            if(pilihan == 0){
-//                //yes
-//                String Q = "DELETE FROM akun WHERE id="+id+" ";
-//                try {
-//                    Connection K = Koneksi.Go();
-//                    Statement S = K.createStatement();
-//                    S.executeUpdate(Q);
-//                    viewdata("");
-//                } catch (Exception e) {
-//                }
-//            }else {
-//                //no
-//            }
-//
-//        }else {
-//            JOptionPane.showMessageDialog(this, "Anda belum memilih data");
-//
-//        }
+        int n = jTable1.getSelectedRow();
+        if(n != -1){
+            int id = Integer.parseInt(jTable1.getValueAt(n, 0).toString());
+            //            JOptionPane.showMessageDialog(this, id);
+
+            int pilihan = JOptionPane.showConfirmDialog(this,
+                "Apakah Anda yakin untuk menghapus data user ini?",
+                "Hapus Data",JOptionPane.YES_NO_OPTION);
+            if(pilihan == 0){
+                //yes
+                String Q = "DELETE FROM produk WHERE id="+id+" ";
+                try {
+                    Connection K = Koneksi.Go();
+                    Statement S = K.createStatement();
+                    S.executeUpdate(Q);
+                    viewDataProduk("");
+                } catch (Exception e) {
+                }
+            }else {
+                //no
+            }
+
+        }else {
+            JOptionPane.showMessageDialog(this, "Anda belum memilih data");
+
+        }
     }//GEN-LAST:event_rSButtonHover3ActionPerformed
 
     private void buttonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditActionPerformed
@@ -319,20 +320,20 @@ public class DashAdm_Produk extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonEditActionPerformed
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-//        // TODO add your handling code here:
-//        txtSearch.setText("");
-//        viewdata("");
+        // TODO add your handling code here:
+        txtSearch.setText("");
+        viewDataProduk("");
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
-        // TODO add your handling code here:
-//        String key = txtSearch.getText();
-//        String w = "WHERE "
-//        + "fullname LIKE '%"+key+"%' "
-//        + "OR username LIKE '%"+key+"%' "
-//        + "OR password LIKE '%"+key+"%' "
-//        + "OR level LIKE '%"+key+"%'";
-//        viewdata(w);
+//         TODO add your handling code here:
+        String key = txtSearch.getText();
+        String w = "WHERE "
+        + "nama_produk LIKE '%"+key+"%' "
+        + "OR produk_supplier LIKE '%"+key+"%' "
+        + "OR harga_produk_beli LIKE '%"+key+"%' "
+        + "OR produk_kode LIKE '%"+key+"%'";
+        viewDataProduk(w);
     }//GEN-LAST:event_txtSearchActionPerformed
 
     /**

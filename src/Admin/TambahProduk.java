@@ -17,6 +17,8 @@ public class TambahProduk extends javax.swing.JFrame {
 
     public TambahProduk() {
         initComponents();
+        
+        
 //        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
     }
 
