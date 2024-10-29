@@ -1,9 +1,14 @@
 
 package Admin;
 
+import UILogin.Koneksi;
 import UILogin.UserProfile;
 import UILogin.login;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 public class DashAdm_Produk extends javax.swing.JFrame {
 
@@ -24,6 +29,7 @@ public class DashAdm_Produk extends javax.swing.JFrame {
         txtNamaProfile.setText(u.getFullname());
         txtLevel.setText(u.getLevel());
 //        txtTextNama.setText(u.getFullname());
+        viewDataProduk("");
     }
 
     /**
@@ -416,4 +422,41 @@ public class DashAdm_Produk extends javax.swing.JFrame {
     private javax.swing.JLabel txtNamaProfile;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
+
+    private void viewDataProduk(String where) {
+        try {
+            DefaultTableModel m = (DefaultTableModel) jTable1.getModel();
+            m.getDataVector().removeAllElements();
+            Connection K = Koneksi.Go();
+            Statement S = K.createStatement();
+            String Q = "SELECT * FROM produk "+where;
+            ResultSet R = S.executeQuery(Q);
+            int n = 1;
+            while (R.next()) {                 
+                int id = R.getInt("ID");
+                
+//                String idProfile = R.getString("ID_profile");
+                int kodeProduk = R.getInt("produk_kode");
+                String namaProduk = R.getString("nama_produk");
+                String gambarProduk = R.getString("gambar_produk");
+                int produkKategori = R.getInt("produk_kategori");
+                int produkSupplier = R.getInt("produk_supplier");
+                int hargaBeli = R.getInt("harga_produk_beli");
+                int hargaJual = R.getInt("harga_produk_jual");
+                int stok = R.getInt("produk_stok");
+                String deskripsi = R.getString("deskripsi_produk");
+                
+                Object[] data = {id, n, kodeProduk, namaProduk, gambarProduk, produkKategori, produkSupplier, hargaBeli, hargaJual, stok, deskripsi};
+                m.addRow(data); 
+                n++;
+            }
+            
+            jTable1.getColumnModel().getColumn(0).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
+//            
+        } catch (Exception e) {
+            //error handling
+        }
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
