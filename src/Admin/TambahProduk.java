@@ -17,6 +17,7 @@ public class TambahProduk extends javax.swing.JFrame {
 
     public TambahProduk() {
         initComponents();
+//        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -33,7 +34,6 @@ public class TambahProduk extends javax.swing.JFrame {
         rSButtonHover1 = new rojeru_san.complementos.RSButtonHover();
         txtNama = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        txtNama1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtNama2 = new javax.swing.JTextField();
@@ -52,10 +52,12 @@ public class TambahProduk extends javax.swing.JFrame {
         txtNama6 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         txtNama7 = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnBatal.setText("Batal");
@@ -64,7 +66,7 @@ public class TambahProduk extends javax.swing.JFrame {
                 btnBatalActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 570, -1, -1));
+        jPanel1.add(btnBatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, -1, -1));
 
         rSButtonHover1.setText("Tambah");
         rSButtonHover1.addActionListener(new java.awt.event.ActionListener() {
@@ -72,48 +74,42 @@ public class TambahProduk extends javax.swing.JFrame {
                 rSButtonHover1ActionPerformed(evt);
             }
         });
-        jPanel1.add(rSButtonHover1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, -1, -1));
+        jPanel1.add(rSButtonHover1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 430, -1, -1));
 
+        txtNama.setEditable(false);
         txtNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNamaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 71, 253, 40));
+        jPanel1.add(txtNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 90, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Form Tambah Produk");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 6, -1, -1));
-
-        txtNama1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNama1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtNama1, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 71, 253, 40));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
         jLabel4.setText("Kode Produk");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 71, 80, 40));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 80, 20));
 
         jLabel5.setText("Nama");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 80, 40));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 80, -1));
 
         txtNama2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNama2ActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNama2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 253, 40));
+        jPanel1.add(txtNama2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 253, 30));
 
         txtNama3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNama3ActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNama3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 180, 40));
+        jPanel1.add(txtNama3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 180, 30));
 
         jLabel6.setText("Kategori");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 80, 40));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 80, 20));
 
         jButton1.setText("Pilih");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -121,61 +117,62 @@ public class TambahProduk extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 60, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 60, 30));
 
         jLabel7.setText("Gambar");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 80, 40));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 80, 20));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, -1, 40));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, -1, 30));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, -1, 40));
+        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, 30));
 
         jLabel8.setText("Produk Supplier");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 100, 40));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 100, 40));
 
         txtNama4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNama4ActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNama4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, 253, 40));
+        jPanel1.add(txtNama4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 253, 30));
 
         jLabel9.setText("Harga Jual");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 80, 40));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 80, 20));
 
         jLabel10.setText("Harga Jual");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 80, 40));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 80, 20));
 
         txtNama5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNama5ActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNama5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 253, 40));
+        jPanel1.add(txtNama5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, 253, 30));
 
         jLabel11.setText("Stok");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 80, 40));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, 80, -1));
 
         txtNama6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNama6ActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNama6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 420, 253, 40));
+        jPanel1.add(txtNama6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 253, 30));
 
         jLabel12.setText("Deskripsi");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 80, 40));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, 80, 20));
 
         txtNama7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNama7ActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNama7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 470, 253, 80));
+        jPanel1.add(txtNama7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 250, 80));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 680, 10));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 481, 480));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -215,10 +212,6 @@ public class TambahProduk extends javax.swing.JFrame {
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnBatalActionPerformed
-
-    private void txtNama1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNama1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNama1ActionPerformed
 
     private void txtNama2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNama2ActionPerformed
         // TODO add your handling code here:
@@ -299,9 +292,9 @@ public class TambahProduk extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
     private rojeru_san.complementos.RSButtonHover rSButtonHover1;
     private javax.swing.JTextField txtNama;
-    private javax.swing.JTextField txtNama1;
     private javax.swing.JTextField txtNama2;
     private javax.swing.JTextField txtNama3;
     private javax.swing.JTextField txtNama4;

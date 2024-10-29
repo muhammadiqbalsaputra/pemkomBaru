@@ -167,7 +167,7 @@ public class DashAdm_Produk extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        PanelUtama.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 207, 1120, 370));
+        PanelUtama.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 217, 790, 360));
 
         buttonTambah.setText("Tambah");
         buttonTambah.addActionListener(new java.awt.event.ActionListener() {
@@ -265,8 +265,9 @@ public class DashAdm_Produk extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogout1ActionPerformed
 
     private void buttonTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTambahActionPerformed
-        Tambah t = new Tambah();
+        TambahProduk t = new TambahProduk();
         t.setVisible(true);
+        this.setExtendedState(JFrame.MAXIMIZED_VERT);
     }//GEN-LAST:event_buttonTambahActionPerformed
 
     private void rSButtonHover3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover3ActionPerformed
