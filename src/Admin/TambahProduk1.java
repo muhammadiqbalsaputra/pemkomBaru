@@ -4,6 +4,15 @@
  */
 package Admin;
 
+import UILogin.Koneksi;
+import java.io.File;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 /**
  *
  * @author FAUZI
@@ -16,6 +25,13 @@ public class TambahProduk1 extends javax.swing.JDialog {
     public TambahProduk1(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+         viewCategory("produk_kategori", jComboBox1);
+         viewCategory("supplier", jComboBox2);
+    }
+
+    TambahProduk1() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -92,6 +108,11 @@ public class TambahProduk1 extends javax.swing.JDialog {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 80, 20));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, 30));
 
         jLabel8.setText("Produk Supplier");
@@ -237,6 +258,11 @@ public class TambahProduk1 extends javax.swing.JDialog {
         this.setVisible(false);
     }//GEN-LAST:event_btnBatalActionPerformed
 
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -305,4 +331,23 @@ public class TambahProduk1 extends javax.swing.JDialog {
     private javax.swing.JTextField txtNama6;
     private javax.swing.JTextField txtNama7;
     // End of variables declaration//GEN-END:variables
+
+private void viewCategory(String tableName, JComboBox cmb){
+    try {
+        cmb.removeAllItems();
+        Connection K = Koneksi.Go();
+            Statement S = K.createStatement();
+            String Q = "SELECT * FROM "+tableName;
+            ResultSet R = S.executeQuery(Q);
+//            int n = 1;
+            while (R.next()) {                 
+                int id = R.getInt("ID");                 	 	 	 	 	 	 	 	
+                String name = R.getString("nama");
+//                String desc = R.getString("description");
+                cmb.addItem(id+"-"+name);                 
+            }
+    } catch (SQLException e) {
+        System.err.println("ErrorCode: 1123"+e.getMessage());
+    }
+}
 }
