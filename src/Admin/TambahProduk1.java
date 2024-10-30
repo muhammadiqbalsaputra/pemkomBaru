@@ -13,6 +13,7 @@ import java.sql.Statement;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
 /**
  *
  * @author FAUZI
@@ -76,7 +77,6 @@ public class TambahProduk1 extends javax.swing.JDialog {
         jLabel1.setText("Form Tambah Produk");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        txtNama.setEditable(false);
         txtNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNamaActionPerformed(evt);
@@ -227,31 +227,42 @@ public class TambahProduk1 extends javax.swing.JDialog {
     }//GEN-LAST:event_txtNama7ActionPerformed
 
     private void rSButtonHover1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover1ActionPerformed
-        //        String name = txtNama.getText();
-        //        String user = txtUsername.getText();
-        //        String pass = new String(txtPassword.getPassword());
-        //        String level = optionRole.getSelectedItem().toString();
-
+        
+        String kodeProduk = txtNama.getText();
+        String nama = txtNama2.getText();
+        String gambar = txtNama3.getText();
+        String produkSupplier = jComboBox2.getSelectedItem().toString();
+        String produkKategori = jComboBox1.getSelectedItem().toString();
+        int hargaJual = Integer.parseInt(txtNama4.getText());
+        int hargaBeli = Integer.parseInt(txtNama5.getText());
+        int stok = Integer.parseInt(txtNama6.getText());
+        String deskripsi = txtNama7.getText();
         //pengecekan
 
-        //        try {
-            //            Connection K = Koneksi.Go();
-            //            String Q = "INSERT INTO akun "
-            //            + "(fullname,username,password,level) "
-            //            + "VALUES (?,?,?,?)";
-            //            PreparedStatement PS = K.prepareStatement(Q);
-            //            PS.setString(1, name);
-            //            PS.setString(2, user);
-            //            PS.setString(3, pass);
-            //            PS.setString(4, level);
-            //            PS.executeUpdate();
-            //
-            //            DashAdm_Akun.viewdata("");
-            //            JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
-            //            txtNama.requestFocus();
-            //        }catch (Exception e) {
-            //
-            //        }
+        try {
+            Connection K = Koneksi.Go();
+            String Q = "INSERT INTO produk "
+                    + "(produk_kode,nama_produk,gambar_produk,produk_supplier, produk_kategori,harga_produk_jual,harga_produk_beli,produk_stok,deskripsi_produk) "
+                    + "VALUES (?,?,?,?,?,?,?,?,?)";
+            
+            PreparedStatement PS = K.prepareStatement(Q);
+            PS.setString(1, kodeProduk);  
+            PS.setString(2, nama);
+            PS.setString(3, gambar);
+            PS.setString(4, produkSupplier);
+            PS.setString(5, produkKategori);
+            PS.setInt(6, hargaJual);
+            PS.setInt(7, hargaBeli);
+            PS.setInt(8, stok);
+            PS.setString(9, deskripsi);
+
+            PS.executeUpdate();
+
+            JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+}
     }//GEN-LAST:event_rSButtonHover1ActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed

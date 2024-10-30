@@ -100,6 +100,11 @@ public class Tambah extends javax.swing.JFrame {
         jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 250, 40));
 
         optionRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "admin", "owner", "kasir" }));
+        optionRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optionRoleActionPerformed(evt);
+            }
+        });
         jPanel1.add(optionRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 481, 480));
@@ -150,6 +155,10 @@ public class Tambah extends javax.swing.JFrame {
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsernameActionPerformed
+
+    private void optionRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionRoleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_optionRoleActionPerformed
 
     /**
      * @param args the command line arguments
