@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import UILogin.Koneksi;
+import com.mysql.cj.xdevapi.Statement;
 
 /**
  *
@@ -304,4 +305,24 @@ public class TambahProduk extends javax.swing.JFrame {
     private javax.swing.JTextField txtNama6;
     private javax.swing.JTextField txtNama7;
     // End of variables declaration//GEN-END:variables
+
+private void viewCategory(String tableName, jComboBox cmb){
+    try {
+        cmb.removeAllItems();
+        Connection K = Koneksi.Go();
+            Statement S = (Statement) K.createStatement();
+            String Q = "SELECT * FROM "+tableName;
+            ResultSet R = S.executeQuery(Q);
+//            int n = 1;
+            while (R.next()) {                 
+                int id = R.getInt("id");                 	 	 	 	 	 	 	 	
+                String name = R.getString("name");
+//                String desc = R.getString("description");
+                cmb.addItem(id+"-"+name);                 
+            }
+    } catch (SQLException e) {
+        System.err.println("ErrorCode: 1123"+e.getMessage());
+    }
+}
+
 }

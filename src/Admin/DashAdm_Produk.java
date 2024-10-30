@@ -266,7 +266,7 @@ public class DashAdm_Produk extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogout1ActionPerformed
 
     private void buttonTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTambahActionPerformed
-        TambahProduk t = new TambahProduk();
+        TambahProduk1 t = new TambahProduk1(this, rootPaneCheckingEnabled);
         t.setVisible(true);
         this.setExtendedState(JFrame.MAXIMIZED_VERT);
     }//GEN-LAST:event_buttonTambahActionPerformed
