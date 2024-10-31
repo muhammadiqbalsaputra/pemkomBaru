@@ -425,7 +425,7 @@ public class DashAdm_Produk extends javax.swing.JFrame {
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 
-    private void viewDataProduk(String where) {
+    public static void viewDataProduk(String where) {
         try {
             DefaultTableModel m = (DefaultTableModel) jTable1.getModel();
             m.getDataVector().removeAllElements();

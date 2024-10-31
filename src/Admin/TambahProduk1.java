@@ -4,6 +4,7 @@
  */
 package Admin;
 
+//import static Admin.DashAdm_Produk.viewDataProduk;
 import UILogin.Koneksi;
 import java.io.File;
 import java.sql.Connection;
@@ -257,8 +258,10 @@ public class TambahProduk1 extends javax.swing.JDialog {
             PS.setString(9, deskripsi);
 
             PS.executeUpdate();
-
+            
+            DashAdm_Produk.viewDataProduk("");
             JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
+            
         }
         catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error saat menyimpan data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
