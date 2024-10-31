@@ -301,22 +301,35 @@ public class DashAdm_Produk extends javax.swing.JFrame {
     }//GEN-LAST:event_rSButtonHover3ActionPerformed
 
     private void buttonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditActionPerformed
-//        int n = jTable1.getSelectedRow();
-//        if(n != -1){
-//            int id = Integer.parseInt(jTable1.getValueAt(n, 0).toString());
-//            String FN = jTable1.getValueAt(n, 2).toString();
-//            String UN = jTable1.getValueAt(n, 3).toString();
-//            String PS = jTable1.getValueAt(n, 4).toString();
-//            String LV = jTable1.getValueAt(n, 5).toString();
-//            EditBaru E = new EditBaru(this, true);
-//            E.setId(id);
-//            E.setFN(FN);
-//            E.setUS(UN);
-//            E.setPS(PS);
-//            E.setLV(LV);
-//            E.setVisible(true);
+
+        int n = jTable1.getSelectedRow();
+        if(n != -1){
+            int id = Integer.parseInt(jTable1.getValueAt(n, 0).toString());
+            int kodeProduk = Integer.parseInt(jTable1.getValueAt(n, 1).toString());
+            String nama = jTable1.getValueAt(n, 2).toString();
+            String gambar = jTable1.getValueAt(n, 3).toString();
+            String produkSupplier = jTable1.getValueAt(n, 4).toString();
+            String produkKategori = jTable1.getValueAt(n, 5).toString();
+            int hargaJual = Integer.parseInt(jTable1.getValueAt(n, 6).toString());
+            int hargaBeli = Integer.parseInt(jTable1.getValueAt(n, 7).toString());
+            int stok = Integer.parseInt(jTable1.getValueAt(n, 8).toString());
+            String deskripsi = jTable1.getValueAt(n, 9).toString();
+            
+            EditProduk1 E = new EditProduk1(this, true);
+            
+            E.setId(id);
+            E.setKP(kodeProduk);
+            E.setNP(nama);
+            E.setGP(gambar);
+            E.setPSup(produkSupplier);
+            E.setPK(produkKategori);
+            E.setHJ(hargaJual);
+            E.setHB(hargaBeli);
+            E.setST(stok);
+            E.setDS(deskripsi);
+            E.setVisible(true);
 //            //            DISINI DITEMPAT INI ERROR !!!!
-//        }
+        }
     }//GEN-LAST:event_buttonEditActionPerformed
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
@@ -409,7 +422,7 @@ public class DashAdm_Produk extends javax.swing.JFrame {
     private rojeru_san.complementos.RSButtonHover btnLogout1;
     private rojeru_san.complementos.RSButtonHover btnProduk;
     private rojeru_san.complementos.RSButtonHover btnRefresh;
-    private rojeru_san.complementos.RSButtonHover buttonEdit;
+    private static rojeru_san.complementos.RSButtonHover buttonEdit;
     private rojeru_san.complementos.RSButtonHover buttonTambah;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel1;
@@ -425,6 +438,8 @@ public class DashAdm_Produk extends javax.swing.JFrame {
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 
+    
+    
     public static void viewDataProduk(String where) {
         try {
             DefaultTableModel m = (DefaultTableModel) jTable1.getModel();

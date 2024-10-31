@@ -10,6 +10,16 @@ package Admin;
  */
 public class EditProduk1 extends javax.swing.JDialog {
 
+    private int id;
+    private int KP;
+    private String NP;
+    private String GP;
+    private String PSup;
+    private String PK;
+    private int HJ;
+    private int HB;
+    private int ST;
+    private String DS;
     /**
      * Creates new form TambahProduk1
      */
@@ -306,4 +316,85 @@ public class EditProduk1 extends javax.swing.JDialog {
     private javax.swing.JTextField txtNama6;
     private javax.swing.JTextField txtNama7;
     // End of variables declaration//GEN-END:variables
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getKP() {
+        return KP;
+    }
+
+    public void setKP(int KP) {
+        this.KP = KP;
+    }
+
+    public String getNP() {
+        return NP;
+    }
+
+    public void setNP(String NP) {
+        this.NP = NP;
+    }
+
+    public String getGP() {
+        return GP;
+    }
+
+    public void setGP(String GP) {
+        this.GP = GP;
+    }
+
+    public String getPSup() {
+        return PSup;
+    }
+
+    public void setPSup(String PSup) {
+        this.PSup = PSup;
+    }
+
+    public String getPK() {
+        return PK;
+    }
+
+    public void setPK(String PK) {
+        this.PK = PK;
+    }
+
+    public int getHJ() {
+        return HJ;
+    }
+
+    public void setHJ(int HJ) {
+        this.HJ = HJ;
+    }
+
+    public int getHB() {
+        return HB;
+    }
+
+    public void setHB(int HB) {
+        this.HB = HB;
+    }
+
+    public int getST() {
+        return ST;
+    }
+
+    public void setST(int ST) {
+        this.ST = ST;
+    }
+
+    public String getDS() {
+        return DS;
+    }
+
+    public void setDS(String DS) {
+        this.DS = DS;
+    }
+    
 }
