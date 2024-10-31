@@ -441,8 +441,8 @@ public class DashAdm_Produk extends javax.swing.JFrame {
                 int kodeProduk = R.getInt("produk_kode");
                 String namaProduk = R.getString("nama_produk");
                 String gambarProduk = R.getString("gambar_produk");
-                int produkKategori = R.getInt("produk_kategori");
-                int produkSupplier = R.getInt("produk_supplier");
+                String produkKategori = R.getString("produk_kategori");
+                String produkSupplier = R.getString("produk_supplier");
                 int hargaBeli = R.getInt("harga_produk_beli");
                 int hargaJual = R.getInt("harga_produk_jual");
                 int stok = R.getInt("produk_stok");

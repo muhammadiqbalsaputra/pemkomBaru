@@ -260,7 +260,11 @@ public class TambahProduk1 extends javax.swing.JDialog {
 
             JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
         }
-        catch (Exception e) {
+        catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error saat menyimpan data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error: Pastikan semua input angka diisi dengan benar.", "Input Error", JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
 }
     }//GEN-LAST:event_rSButtonHover1ActionPerformed
