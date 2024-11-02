@@ -4,6 +4,16 @@
  */
 package Admin;
 
+import UILogin.Koneksi;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.PreparedStatement;
+
+
+import javax.swing.JComboBox;
+
 /**
  *
  * @author FAUZI
@@ -26,6 +36,8 @@ public class EditProduk1 extends javax.swing.JDialog {
     public EditProduk1(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        viewCategory("produk_kategori", jComboBox1);
+        viewCategory("supplier", jComboBox2);
     }
 
     /**
@@ -102,6 +114,11 @@ public class EditProduk1 extends javax.swing.JDialog {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 80, 20));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, 30));
 
         jLabel8.setText("Produk Supplier");
@@ -216,6 +233,39 @@ public class EditProduk1 extends javax.swing.JDialog {
     }//GEN-LAST:event_txtNama7ActionPerformed
 
     private void rSButtonHover1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover1ActionPerformed
+
+//        int id = Integer.parseInt(txtNama.getText());
+        int kp = Integer.parseInt(txtNama.getText());
+        String np = txtNama2.getText();
+        String gp = txtNama3.getText();
+        String pk = jComboBox1.getSelectedItem().toString();
+        String PSup = jComboBox2.getSelectedItem().toString();
+        int hj = Integer.parseInt(txtNama4.getText());
+        int hb = Integer.parseInt(txtNama5.getText());
+        int st = Integer.parseInt(txtNama6.getText());
+        String ds = txtNama7.getText();
+        
+        PreparedStatement PS;
+
+        try {
+            Connection K = Koneksi.Go();
+            String Q = "UPDATE akun "
+                    + "SET produk_kode=?,nama_produk=?,gambar_produk=?,produk_supplier=?,produk_kategori=?,harga_produk_jual=?,harga_produk_beli=?,produk_stok=?,deskripsi_produk=? WHERE id=?";
+            PS = K.prepareStatement(Q);
+            PS.setInt(1, kp);  
+            PS.setString(2, np);
+            PS.setString(3, gp);
+            PS.setString(4, pk);
+            PS.setString(5, PSup);
+            PS.setInt(6, hj);
+            PS.setInt(7, hb);
+            PS.setInt(8, st);
+            PS.setString(9, ds);
+            PS.setInt(10, getId());
+
+
+        } catch (Exception e) {
+        }
         //        String name = txtNama.getText();
         //        String user = txtUsername.getText();
         //        String pass = new String(txtPassword.getPassword());
@@ -246,6 +296,10 @@ public class EditProduk1 extends javax.swing.JDialog {
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnBatalActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -395,6 +449,25 @@ public class EditProduk1 extends javax.swing.JDialog {
 
     public void setDS(String DS) {
         this.DS = DS;
+    }
+
+    private void viewCategory(String tableName, JComboBox cmb) {
+        try {
+        cmb.removeAllItems();
+        Connection K = Koneksi.Go();
+            Statement S = K.createStatement();
+            String Q = "SELECT * FROM "+tableName;
+            ResultSet R = S.executeQuery(Q);
+//            int n = 1;
+            while (R.next()) {                 
+                int id = R.getInt("ID");                 	 	 	 	 	 	 	 	
+                String name = R.getString("nama");
+//                String desc = R.getString("description");
+                cmb.addItem(id+"-"+name);                 
+            }
+    } catch (SQLException e) {
+        System.err.println("ErrorCode: 1123"+e.getMessage());
+    }
     }
     
 }
