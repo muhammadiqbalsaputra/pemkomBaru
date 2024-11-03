@@ -4,13 +4,15 @@
  */
 package Admin;
 
+
+
 import UILogin.Koneksi;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
-
+import Admin.DashAdm_Produk;
 
 import javax.swing.JComboBox;
 
@@ -233,64 +235,46 @@ public class EditProduk1 extends javax.swing.JDialog {
     }//GEN-LAST:event_txtNama7ActionPerformed
 
     private void rSButtonHover1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover1ActionPerformed
-
-//        int id = Integer.parseInt(txtNama.getText());
-        int kp = Integer.parseInt(txtNama.getText());
-        String np = txtNama2.getText();
-        String gp = txtNama3.getText();
-        String pk = jComboBox1.getSelectedItem().toString();
-        String PSup = jComboBox2.getSelectedItem().toString();
-        int hj = Integer.parseInt(txtNama4.getText());
-        int hb = Integer.parseInt(txtNama5.getText());
-        int st = Integer.parseInt(txtNama6.getText());
-        String ds = txtNama7.getText();
-        
-        PreparedStatement PS;
-
         try {
+            int kp = Integer.parseInt(txtNama.getText());
+            String np = txtNama2.getText();
+            String gp = txtNama3.getText();
+            String pk = jComboBox1.getSelectedItem().toString(); 
+            String PSup = jComboBox2.getSelectedItem().toString(); 
+            int hj = Integer.parseInt(txtNama4.getText());
+            int hb = Integer.parseInt(txtNama5.getText());
+            int st = Integer.parseInt(txtNama6.getText());
+            String ds = txtNama7.getText();
+
+            PreparedStatement PS;
             Connection K = Koneksi.Go();
             String Q = "UPDATE akun "
-                    + "SET produk_kode=?,nama_produk=?,gambar_produk=?,produk_supplier=?,produk_kategori=?,harga_produk_jual=?,harga_produk_beli=?,produk_stok=?,deskripsi_produk=? WHERE id=?";
+                    + "SET produk_kode=?, nama_produk=?, gambar_produk=?, produk_supplier=?, produk_kategori=?, harga_produk_jual=?, harga_produk_beli=?, produk_stok=?, deskripsi_produk=? WHERE id=?";
             PS = K.prepareStatement(Q);
             PS.setInt(1, kp);  
             PS.setString(2, np);
             PS.setString(3, gp);
-            PS.setString(4, pk);
-            PS.setString(5, PSup);
+            PS.setString(4, PSup);
+            PS.setString(5, pk);
             PS.setInt(6, hj);
             PS.setInt(7, hb);
             PS.setInt(8, st);
             PS.setString(9, ds);
-            PS.setInt(10, getId());
 
-
+            int selectedRow = DashAdm_Produk.jTable1.getSelectedRow();
+            if (selectedRow != -1) {
+                int id = Integer.parseInt(DashAdm_Produk.jTable1.getValueAt(selectedRow, 0).toString());
+                PS.setInt(10, id);
+                PS.executeUpdate(); 
+            } else {
+                System.err.println("Tidak ada baris yang dipilih di tabel.");
+            }
+        } catch (NumberFormatException e) {
+            System.err.println("Kesalahan format angka: " + e.getMessage());
+            e.printStackTrace(); 
         } catch (Exception e) {
+            e.printStackTrace(); 
         }
-        //        String name = txtNama.getText();
-        //        String user = txtUsername.getText();
-        //        String pass = new String(txtPassword.getPassword());
-        //        String level = optionRole.getSelectedItem().toString();
-
-        //pengecekan
-
-        //        try {
-            //            Connection K = Koneksi.Go();
-            //            String Q = "INSERT INTO akun "
-            //            + "(fullname,username,password,level) "
-            //            + "VALUES (?,?,?,?)";
-            //            PreparedStatement PS = K.prepareStatement(Q);
-            //            PS.setString(1, name);
-            //            PS.setString(2, user);
-            //            PS.setString(3, pass);
-            //            PS.setString(4, level);
-            //            PS.executeUpdate();
-            //
-            //            DashAdm_Akun.viewdata("");
-            //            JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
-            //            txtNama.requestFocus();
-            //        }catch (Exception e) {
-            //
-            //        }
     }//GEN-LAST:event_rSButtonHover1ActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
@@ -465,9 +449,31 @@ public class EditProduk1 extends javax.swing.JDialog {
 //                String desc = R.getString("description");
                 cmb.addItem(id+"-"+name);                 
             }
-    } catch (SQLException e) {
+        } catch (SQLException e) {
         System.err.println("ErrorCode: 1123"+e.getMessage());
-    }
+        }
     }
     
+//    private int getSupplierIdByName(String supplierName) {
+//        int supplierId = -1;  // Default value, jika tidak ditemukan
+//        try {
+//            Connection K = Koneksi.Go();
+//            String query = "SELECT id FROM supplier WHERE nama_supplier = ?";
+//            PreparedStatement statement = K.prepareStatement(query);
+//            statement.setString(1, supplierName);
+//            ResultSet resultSet = statement.executeQuery();
+//
+//            if (resultSet.next()) {
+//                supplierId = resultSet.getInt("id");
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return supplierId;
+//    }
+
+    
+    
 }
+
+

@@ -15,7 +15,6 @@ public class DashAdm_Produk extends javax.swing.JFrame {
 
     UserProfile u;
     
-    
     /**
      * Creates new form OwnerPage
      */
@@ -430,7 +429,7 @@ public class DashAdm_Produk extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private static javax.swing.JTable jTable1;
+    public static javax.swing.JTable jTable1;
     private rojeru_san.complementos.RSButtonHover rSButtonHover3;
     private javax.swing.JPanel sidebar;
     private javax.swing.JLabel txtLevel;
