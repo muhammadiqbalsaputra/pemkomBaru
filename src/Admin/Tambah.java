@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import UILogin.Koneksi;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -133,6 +135,17 @@ public class Tambah extends javax.swing.JFrame {
             PS.executeUpdate();
             
             DashAdm_Akun.viewdata(""); 
+            JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
+            txtNama.requestFocus();
+            
+            
+            //format tanggal
+            Date d = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy H:m:s z");
+            String tanggal = sdf.format(d);
+            
+            
+            Function.logActivity("\n["+tanggal+"] Penambahan user baru berhasil "); 
             JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
             txtNama.requestFocus();
         }catch (Exception e) {

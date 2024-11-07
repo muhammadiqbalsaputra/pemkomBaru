@@ -7,6 +7,8 @@ import UILogin.login;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -167,7 +169,7 @@ public class DashAdm_Produk extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        PanelUtama.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 217, 790, 360));
+        PanelUtama.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 217, 1080, 360));
 
         buttonTambah.setText("Tambah");
         buttonTambah.addActionListener(new java.awt.event.ActionListener() {
@@ -287,6 +289,15 @@ public class DashAdm_Produk extends javax.swing.JFrame {
                     Statement S = K.createStatement();
                     S.executeUpdate(Q);
                     viewDataProduk("");
+                    
+                    //format tanggal
+                    Date d = new Date();
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy H:m:s z");
+                    String tanggal = sdf.format(d);
+
+                    Function.logActivity("\n["+tanggal+"] Hapus produk berhasil "); 
+//                    JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
+                    jTable1.requestFocus();
                 } catch (Exception e) {
                 }
             }else {
@@ -300,7 +311,6 @@ public class DashAdm_Produk extends javax.swing.JFrame {
     }//GEN-LAST:event_rSButtonHover3ActionPerformed
 
     private void buttonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditActionPerformed
-
         int n = jTable1.getSelectedRow();
         if(n != -1){
             int id = Integer.parseInt(jTable1.getValueAt(n, 0).toString());

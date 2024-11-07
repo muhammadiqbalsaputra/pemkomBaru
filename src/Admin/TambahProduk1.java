@@ -15,6 +15,8 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 /**
  *
  * @author FAUZI
@@ -69,6 +71,7 @@ public class TambahProduk1 extends javax.swing.JDialog {
         rSButtonHover1 = new rojeru_san.complementos.RSButtonHover();
         btnBatal = new rojeru_san.complementos.RSButtonHover();
         jSeparator1 = new javax.swing.JSeparator();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -189,6 +192,7 @@ public class TambahProduk1 extends javax.swing.JDialog {
         });
         jPanel1.add(btnBatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, -1, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 680, 10));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 490, 70, 20));
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -239,6 +243,24 @@ public class TambahProduk1 extends javax.swing.JDialog {
         int stok = Integer.parseInt(txtNama6.getText());
         String deskripsi = txtNama7.getText();
         //pengecekan
+        
+        
+        //pop up saat form kosong
+        if (kodeProduk.isEmpty() || nama.isEmpty() || gambar.isEmpty() || produkSupplier.isEmpty() || produkKategori.isEmpty() || deskripsi.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Semua field harus diisi!", "Input Error", JOptionPane.WARNING_MESSAGE);
+            return;  
+        }
+
+        // Cek apakah input harga dan stok berupa angka
+//        int hargaJual, hargaBeli, stok;
+        try {
+            hargaJual = Integer.parseInt(txtNama4.getText());
+            hargaBeli = Integer.parseInt(txtNama5.getText());
+            stok = Integer.parseInt(txtNama6.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Pastikan harga dan stok diisi dengan angka yang valid.", "Input Error", JOptionPane.WARNING_MESSAGE);
+            return;  
+        }
 
         try {
             Connection K = Koneksi.Go();
@@ -262,6 +284,15 @@ public class TambahProduk1 extends javax.swing.JDialog {
             DashAdm_Produk.viewDataProduk("");
             JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
             
+            //format tanggal
+            Date d = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy H:m:s z");
+            String tanggal = sdf.format(d);
+            
+            
+            Function.logActivity("\n["+tanggal+"] Penambahan produk baru berhasil "); 
+//            JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
+            txtNama2.requestFocus();
         }
         catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error saat menyimpan data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -269,7 +300,7 @@ public class TambahProduk1 extends javax.swing.JDialog {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error: Pastikan semua input angka diisi dengan benar.", "Input Error", JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
-}
+        }
     }//GEN-LAST:event_rSButtonHover1ActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
@@ -339,6 +370,7 @@ public class TambahProduk1 extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private rojeru_san.complementos.RSButtonHover rSButtonHover1;
     private javax.swing.JTextField txtNama;
