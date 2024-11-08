@@ -312,20 +312,52 @@ public class DashAdm_Produk extends javax.swing.JFrame {
 
     private void buttonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditActionPerformed
         int n = jTable1.getSelectedRow();
-        if(n != -1){
+        if (n != -1) {
+            // Mengambil ID
             int id = Integer.parseInt(jTable1.getValueAt(n, 0).toString());
-            int kodeProduk = Integer.parseInt(jTable1.getValueAt(n, 1).toString());
+
+            // Mengambil kode produk dan menambahkan log untuk memeriksa data mentah
+            String kodeProdukStr = jTable1.getValueAt(n, 1).toString();
+            System.out.println("Kode Produk Mentah: " + kodeProdukStr);  // Log data mentah
+
+            int kodeProduk = 0;
+            try {
+                // Cek jika kodeProduk mengandung angka sebelum tanda "-"
+                String[] parts = kodeProdukStr.split("-");
+                if (parts.length > 0 && parts[0].matches("\\d+")) {
+                    kodeProduk = Integer.parseInt(parts[0].trim());  // Ambil angka sebelum "-"
+                } else {
+                    System.err.println("Kode produk tidak valid.");
+                }
+            } catch (NumberFormatException e) {
+                // Tangani kesalahan format angka dan log untuk debug
+                System.err.println("Kesalahan format kode produk: " + e.getMessage());
+                // Pastikan kode produk setidaknya 0 jika format tidak valid
+                kodeProduk = 0;
+            }
+
+            // Ambil data lainnya
             String nama = jTable1.getValueAt(n, 2).toString();
             String gambar = jTable1.getValueAt(n, 3).toString();
             String produkSupplier = jTable1.getValueAt(n, 4).toString();
             String produkKategori = jTable1.getValueAt(n, 5).toString();
-            int hargaJual = Integer.parseInt(jTable1.getValueAt(n, 6).toString());
-            int hargaBeli = Integer.parseInt(jTable1.getValueAt(n, 7).toString());
-            int stok = Integer.parseInt(jTable1.getValueAt(n, 8).toString());
+
+            // Memastikan harga adalah angka
+            int hargaJual = 0, hargaBeli = 0, stok = 0;
+            try {
+                hargaJual = Integer.parseInt(jTable1.getValueAt(n, 6).toString());
+                hargaBeli = Integer.parseInt(jTable1.getValueAt(n, 7).toString());
+                stok = Integer.parseInt(jTable1.getValueAt(n, 8).toString());
+            } catch (NumberFormatException e) {
+                System.err.println("Kesalahan format angka: " + e.getMessage());
+            }
+
+            // Ambil deskripsi produk
             String deskripsi = jTable1.getValueAt(n, 9).toString();
-            
+
+            // Membuka jendela EditProduk1 dengan data yang diambil
             EditProduk1 E = new EditProduk1(this, true);
-            
+
             E.setId(id);
             E.setKP(kodeProduk);
             E.setNP(nama);
@@ -337,7 +369,6 @@ public class DashAdm_Produk extends javax.swing.JFrame {
             E.setST(stok);
             E.setDS(deskripsi);
             E.setVisible(true);
-//            //            DISINI DITEMPAT INI ERROR !!!!
         }
     }//GEN-LAST:event_buttonEditActionPerformed
 
