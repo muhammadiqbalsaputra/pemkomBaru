@@ -16,7 +16,7 @@ import java.nio.file.StandardOpenOption;
  * @author FAUZI
  */
 public class Function {
-    static String folder = ".kelasB";
+    static String folder = ".logging";
     static String home = System.getProperty("user.home");
     static String pathFolder = home + File.separator + folder;
 

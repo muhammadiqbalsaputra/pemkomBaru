@@ -56,9 +56,9 @@ public class DashAdm_Produk extends javax.swing.JFrame {
         btnLogout1 = new rojeru_san.complementos.RSButtonHover();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblProduk = new javax.swing.JTable();
         buttonTambah = new rojeru_san.complementos.RSButtonHover();
-        rSButtonHover3 = new rojeru_san.complementos.RSButtonHover();
+        buttonHapus = new rojeru_san.complementos.RSButtonHover();
         buttonEdit = new rojeru_san.complementos.RSButtonHover();
         btnRefresh = new rojeru_san.complementos.RSButtonHover();
         jLabel4 = new javax.swing.JLabel();
@@ -156,7 +156,7 @@ public class DashAdm_Produk extends javax.swing.JFrame {
 
         PanelUtama.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProduk.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null},
@@ -167,7 +167,7 @@ public class DashAdm_Produk extends javax.swing.JFrame {
                 "ID", "No", "produk_kode", "nama", "gambar", "kategori", "produk supplier", "harga jual", "harga beli", "stok", "deskripsi"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblProduk);
 
         PanelUtama.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 217, 1080, 360));
 
@@ -179,15 +179,15 @@ public class DashAdm_Produk extends javax.swing.JFrame {
         });
         PanelUtama.add(buttonTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 150, -1));
 
-        rSButtonHover3.setBackground(new java.awt.Color(255, 0, 0));
-        rSButtonHover3.setText("Hapus");
-        rSButtonHover3.setColorHover(new java.awt.Color(153, 0, 0));
-        rSButtonHover3.addActionListener(new java.awt.event.ActionListener() {
+        buttonHapus.setBackground(new java.awt.Color(255, 0, 0));
+        buttonHapus.setText("Hapus");
+        buttonHapus.setColorHover(new java.awt.Color(153, 0, 0));
+        buttonHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonHover3ActionPerformed(evt);
+                buttonHapusActionPerformed(evt);
             }
         });
-        PanelUtama.add(rSButtonHover3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 150, -1));
+        PanelUtama.add(buttonHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 150, -1));
 
         buttonEdit.setBackground(new java.awt.Color(255, 102, 0));
         buttonEdit.setText("Edit");
@@ -236,6 +236,8 @@ public class DashAdm_Produk extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        getAccessibleContext().setAccessibleName("Halaman Admin");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -272,10 +274,10 @@ public class DashAdm_Produk extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_VERT);
     }//GEN-LAST:event_buttonTambahActionPerformed
 
-    private void rSButtonHover3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover3ActionPerformed
-        int n = jTable1.getSelectedRow();
+    private void buttonHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHapusActionPerformed
+        int n = tblProduk.getSelectedRow();
         if(n != -1){
-            int id = Integer.parseInt(jTable1.getValueAt(n, 0).toString());
+            int id = Integer.parseInt(tblProduk.getValueAt(n, 0).toString());
             //            JOptionPane.showMessageDialog(this, id);
 
             int pilihan = JOptionPane.showConfirmDialog(this,
@@ -297,7 +299,7 @@ public class DashAdm_Produk extends javax.swing.JFrame {
 
                     Function.logActivity("\n["+tanggal+"] Hapus produk berhasil "); 
 //                    JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
-                    jTable1.requestFocus();
+                    tblProduk.requestFocus();
                 } catch (Exception e) {
                 }
             }else {
@@ -308,84 +310,53 @@ public class DashAdm_Produk extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Anda belum memilih data");
 
         }
-    }//GEN-LAST:event_rSButtonHover3ActionPerformed
-
+    }//GEN-LAST:event_buttonHapusActionPerformed
+ 
     private void buttonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditActionPerformed
-        int n = jTable1.getSelectedRow();
-        if (n != -1) {
-            // Mengambil ID
-            int id = Integer.parseInt(jTable1.getValueAt(n, 0).toString());
+        int n = tblProduk.getSelectedRow();
+        if(n != -1){
+            // Ambil data dari tabel
+            int id = Integer.parseInt(tblProduk.getValueAt(n, 0).toString());
+            String kodeProduk = tblProduk.getValueAt(n, 2).toString();
+            String namaProduk = tblProduk.getValueAt(n, 3).toString();
+            String gambarProduk = tblProduk.getValueAt(n, 4).toString();
+            String produkKategori = tblProduk.getValueAt(n, 5).toString();
+            String produkSupplier = tblProduk.getValueAt(n, 6).toString();
+            int hargaJual = Integer.parseInt(tblProduk.getValueAt(n, 7).toString());
+            int hargaBeli = Integer.parseInt(tblProduk.getValueAt(n, 8).toString());
+            int stok = Integer.parseInt(tblProduk.getValueAt(n, 9).toString());
+            String deskripsi = tblProduk.getValueAt(n, 10).toString();
 
-            // Mengambil kode produk dan menambahkan log untuk memeriksa data mentah
-            String kodeProdukStr = jTable1.getValueAt(n, 1).toString();
-            System.out.println("Kode Produk Mentah: " + kodeProdukStr);  // Log data mentah
-
-            int kodeProduk = 0;
-            try {
-                // Cek jika kodeProduk mengandung angka sebelum tanda "-"
-                String[] parts = kodeProdukStr.split("-");
-                if (parts.length > 0 && parts[0].matches("\\d+")) {
-                    kodeProduk = Integer.parseInt(parts[0].trim());  // Ambil angka sebelum "-"
-                } else {
-                    System.err.println("Kode produk tidak valid.");
-                }
-            } catch (NumberFormatException e) {
-                // Tangani kesalahan format angka dan log untuk debug
-                System.err.println("Kesalahan format kode produk: " + e.getMessage());
-                // Pastikan kode produk setidaknya 0 jika format tidak valid
-                kodeProduk = 0;
-            }
-
-            // Ambil data lainnya
-            String nama = jTable1.getValueAt(n, 2).toString();
-            String gambar = jTable1.getValueAt(n, 3).toString();
-            String produkSupplier = jTable1.getValueAt(n, 4).toString();
-            String produkKategori = jTable1.getValueAt(n, 5).toString();
-
-            // Memastikan harga adalah angka
-            int hargaJual = 0, hargaBeli = 0, stok = 0;
-            try {
-                hargaJual = Integer.parseInt(jTable1.getValueAt(n, 6).toString());
-                hargaBeli = Integer.parseInt(jTable1.getValueAt(n, 7).toString());
-                stok = Integer.parseInt(jTable1.getValueAt(n, 8).toString());
-            } catch (NumberFormatException e) {
-                System.err.println("Kesalahan format angka: " + e.getMessage());
-            }
-
-            // Ambil deskripsi produk
-            String deskripsi = jTable1.getValueAt(n, 9).toString();
-
-            // Membuka jendela EditProduk1 dengan data yang diambil
-            EditProduk1 E = new EditProduk1(this, true);
-
-            E.setId(id);
-            E.setKP(kodeProduk);
-            E.setNP(nama);
-            E.setGP(gambar);
-            E.setPSup(produkSupplier);
-            E.setPK(produkKategori);
-            E.setHJ(hargaJual);
-            E.setHB(hargaBeli);
-            E.setST(stok);
-            E.setDS(deskripsi);
-            E.setVisible(true);
+            // Membuka form EditProduk1
+            EditProduk1 editProdukForm = new EditProduk1(this, true);
+            editProdukForm.setId(id);
+//            editProdukForm.setKP(Integer.parseInt(kodeProduk));
+            editProdukForm.setKP(kodeProduk);
+            editProdukForm.setNP(namaProduk);
+            editProdukForm.setGP(gambarProduk);
+            editProdukForm.setPSup(produkSupplier);
+            editProdukForm.setPK(produkKategori);
+            editProdukForm.setHJ(hargaJual);
+            editProdukForm.setHB(hargaBeli);
+            editProdukForm.setST(stok);
+            editProdukForm.setDS(deskripsi);
+            editProdukForm.setVisible(true); // Menampilkan form edit produk
+        } else {
+            JOptionPane.showMessageDialog(this, "Anda belum memilih produk untuk diedit.");
         }
     }//GEN-LAST:event_buttonEditActionPerformed
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        // TODO add your handling code here:
-        txtSearch.setText("");
         viewDataProduk("");
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
-//         TODO add your handling code here:
         String key = txtSearch.getText();
         String w = "WHERE "
-        + "nama_produk LIKE '%"+key+"%' "
-        + "OR produk_supplier LIKE '%"+key+"%' "
-        + "OR harga_produk_beli LIKE '%"+key+"%' "
-        + "OR produk_kode LIKE '%"+key+"%'";
+        + "nama_produk LIKE '%" + key + "%' "
+        + "OR produk_supplier LIKE '%" + key + "%' "
+        + "OR produk_kode LIKE '%" + key + "%'"; 
+        System.out.println("Query pencarian: " + w); // Debugging
         viewDataProduk(w);
     }//GEN-LAST:event_txtSearchActionPerformed
 
@@ -463,6 +434,7 @@ public class DashAdm_Produk extends javax.swing.JFrame {
     private rojeru_san.complementos.RSButtonHover btnProduk;
     private rojeru_san.complementos.RSButtonHover btnRefresh;
     private static rojeru_san.complementos.RSButtonHover buttonEdit;
+    private rojeru_san.complementos.RSButtonHover buttonHapus;
     private rojeru_san.complementos.RSButtonHover buttonTambah;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel1;
@@ -470,9 +442,8 @@ public class DashAdm_Produk extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    public static javax.swing.JTable jTable1;
-    private rojeru_san.complementos.RSButtonHover rSButtonHover3;
     private javax.swing.JPanel sidebar;
+    public static javax.swing.JTable tblProduk;
     private javax.swing.JLabel txtLevel;
     private javax.swing.JLabel txtNamaProfile;
     private javax.swing.JTextField txtSearch;
@@ -482,7 +453,7 @@ public class DashAdm_Produk extends javax.swing.JFrame {
     
     public static void viewDataProduk(String where) {
         try {
-            DefaultTableModel m = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel m = (DefaultTableModel) tblProduk.getModel();
             m.getDataVector().removeAllElements();
             Connection K = Koneksi.Go();
             Statement S = K.createStatement();
@@ -493,7 +464,7 @@ public class DashAdm_Produk extends javax.swing.JFrame {
                 int id = R.getInt("ID");
                 
 //                String idProfile = R.getString("ID_profile");
-                int kodeProduk = R.getInt("produk_kode");
+                String kodeProduk = R.getString("produk_kode");
                 String namaProduk = R.getString("nama_produk");
                 String gambarProduk = R.getString("gambar_produk");
                 String produkKategori = R.getString("produk_kategori");
@@ -508,10 +479,11 @@ public class DashAdm_Produk extends javax.swing.JFrame {
                 n++;
             }
             
-            jTable1.getColumnModel().getColumn(0).setMinWidth(0);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
+            tblProduk.getColumnModel().getColumn(0).setMinWidth(0);
+            tblProduk.getColumnModel().getColumn(0).setMaxWidth(0);
 //            
         } catch (Exception e) {
+            System.out.println("Kesalahan pada query");
             //error handling
         }
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

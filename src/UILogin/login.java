@@ -210,6 +210,14 @@ public class login extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String user = txtUser.getText();
         String pass = new String(txtPass.getPassword());
+        
+        
+        // pop up error saat form kosong
+        if (user.isEmpty() || pass.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Username atau Password tidak boleh kosong!", "Input Error", JOptionPane.WARNING_MESSAGE);
+            return; 
+        }
+        
         try {
             Connection c = Koneksi.Go();
             Statement s = c.createStatement();
