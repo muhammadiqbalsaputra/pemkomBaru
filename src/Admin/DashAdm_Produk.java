@@ -328,8 +328,13 @@ public class DashAdm_Produk extends javax.swing.JFrame {
             String deskripsi = tblProduk.getValueAt(n, 10).toString();
 
             // Membuka form EditProduk1
-            EditProduk1 editProdukForm = new EditProduk1(this, true);
-            editProdukForm.setId(id);
+//            EditProduk1 editProdukForm = new EditProduk1(this, true);
+//            editProdukForm.setId(id);
+//            editProdukForm.setVisible(true);
+
+              EditProduk1 editProdukForm = new EditProduk1(this, true);
+            editProdukForm.setData(kodeProduk, namaProduk, gambarProduk, produkSupplier, produkKategori, hargaJual, hargaBeli, stok, deskripsi);
+            editProdukForm.setVisible(true);
 //            editProdukForm.setKP(Integer.parseInt(kodeProduk));
             editProdukForm.setKP(kodeProduk);
             editProdukForm.setNP(namaProduk);
