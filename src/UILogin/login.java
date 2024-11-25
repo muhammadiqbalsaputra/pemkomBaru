@@ -1,7 +1,7 @@
 package UILogin;
 
 import Owner.OwnerPage;
-import Kasir.KasirPage;
+import Kasir.homeKasir;
 import Admin.DashAdm_Home;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -222,7 +222,7 @@ public class login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Sukses Login");
                 if(lv.equals("kasir")){
                     this.setVisible(false); 
-                    KasirPage K = new KasirPage();
+                    homeKasir K = new homeKasir();
                     K.setVisible(true); 
                     K.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
