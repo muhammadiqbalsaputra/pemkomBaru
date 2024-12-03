@@ -37,7 +37,7 @@ public class laporanKasir extends javax.swing.JFrame {
         btnHome1 = new rojeru_san.complementos.RSButtonHover();
         btnHome2 = new rojeru_san.complementos.RSButtonHover();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblCart = new javax.swing.JTable();
+        tblCart1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         lblTotalHarga = new javax.swing.JLabel();
@@ -130,8 +130,8 @@ public class laporanKasir extends javax.swing.JFrame {
 
         getContentPane().add(sidebar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 96, -1, 972));
 
-        tblCart.setBackground(new java.awt.Color(204, 204, 204));
-        tblCart.setModel(new javax.swing.table.DefaultTableModel(
+        tblCart1.setBackground(new java.awt.Color(204, 204, 204));
+        tblCart1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -139,7 +139,7 @@ public class laporanKasir extends javax.swing.JFrame {
                 "NO", "ID", "NO. INVOICE", "Tanggal", "Kasir", "Sub Total", "Total"
             }
         ));
-        jScrollPane1.setViewportView(tblCart);
+        jScrollPane1.setViewportView(tblCart1);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 1110, 280));
 
@@ -430,6 +430,6 @@ public class laporanKasir extends javax.swing.JFrame {
     private rojeru_san.complementos.RSButtonHover rSButtonHover2;
     private rojeru_san.complementos.RSButtonHover rSButtonHover3;
     private javax.swing.JPanel sidebar;
-    private javax.swing.JTable tblCart;
+    private javax.swing.JTable tblCart1;
     // End of variables declaration//GEN-END:variables
 }
